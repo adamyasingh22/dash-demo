@@ -1,0 +1,83 @@
+[
+    {
+      "name": "Jane Cooper",
+      "company": "Microsoft",
+      "phone": "(225) 555-0118",
+      "email": "jane@microsoft.com",
+      "country": "United States",
+      "status": "Active"
+    },
+    {
+      "name": "Floyd Miles",
+      "company": "Yahoo",
+      "phone": "(205) 555-0100",
+      "email": "floyd@yahoo.com",
+      "country": "Kiribati",
+      "status": "Inactive"
+    },
+    {
+      "name": "Ronald Richards",
+      "company": "Google",
+      "phone": "(302) 555-0107",
+      "email": "ronald@google.com",
+      "country": "Canada",
+      "status": "Active"
+    },
+    {
+      "name": "Savannah Nguyen",
+      "company": "Amazon",
+      "phone": "(684) 555-0102",
+      "email": "savannah@amazon.com",
+      "country": "Germany",
+      "status": "Inactive"
+    },
+    {
+      "name": "Courtney Henry",
+      "company": "Facebook",
+      "phone": "(505) 555-0125",
+      "email": "courtney@facebook.com",
+      "country": "Australia",
+      "status": "Active"
+    },
+    {
+      "name": "Brooklyn Simmons",
+      "company": "Tesla",
+      "phone": "(217) 555-0113",
+      "email": "brooklyn@tesla.com",
+      "country": "United Kingdom",
+      "status": "Inactive"
+    },
+    {
+      "name": "Eleanor Pena",
+      "company": "Netflix",
+      "phone": "(212) 555-0156",
+      "email": "eleanor@netflix.com",
+      "country": "France",
+      "status": "Active"
+    },
+    {
+      "name": "Cameron Williamson",
+      "company": "Spotify",
+      "phone": "(312) 555-0142",
+      "email": "cameron@spotify.com",
+      "country": "Italy",
+      "status": "Inactive"
+    },
+    {
+      "name": "Jerome Bell",
+      "company": "Apple",
+      "phone": "(629) 555-0135",
+      "email": "jerome@apple.com",
+      "country": "Japan",
+      "status": "Active"
+    },
+    {
+      "name": "Kathryn Murphy",
+      "company": "Adobe",
+      "phone": "(478) 555-0179",
+      "email": "kathryn@adobe.com",
+      "country": "Spain",
+      "status": "Inactive"
+    }
+  ]
+  

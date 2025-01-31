@@ -1,25 +1,7 @@
 import { Search } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
-const customers = [
-  {
-    name: "Jane Cooper",
-    company: "Microsoft",
-    phone: "(225) 555-0118",
-    email: "jane@microsoft.com",
-    country: "United States",
-    status: "Active",
-  },
-  {
-    name: "Floyd Miles",
-    company: "Yahoo",
-    phone: "(205) 555-0100",
-    email: "floyd@yahoo.com",
-    country: "Kiribati",
-    status: "Inactive",
-  },
-  // ... other customers data
-]
+import customers from "@/api/customer.json";
 
 export function CustomersTable() {
   return (

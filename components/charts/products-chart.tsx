@@ -20,8 +20,8 @@ export function ProductsChart() {
         <CardDescription>Distribution of product sales</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="h-[260px] w-full">
+          <ResponsiveContainer width="100%" height="80%">
             <PieChart>
               <Pie
                 data={data}
@@ -39,7 +39,7 @@ export function ProductsChart() {
               </Pie>
             </PieChart>
           </ResponsiveContainer>
-          <div className="flex flex-wrap justify-center gap-4 mt-4">
+          <div className="flex flex-wrap justify-center gap-4 mt-2">
             {data.map((entry, index) => (
               <div key={entry.name} className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />

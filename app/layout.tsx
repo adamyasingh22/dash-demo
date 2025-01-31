@@ -7,8 +7,8 @@ import type React from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "CRM Dashboard",
-  description: "A modern CRM dashboard built with Next.js and Tailwind CSS",
+  title: "Demo Dashboard",
+  description: "A modern Demo dashboard built with Next.js and Tailwind CSS",
 }
 
 export default function RootLayout({

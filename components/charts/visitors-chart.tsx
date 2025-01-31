@@ -1,6 +1,7 @@
 "use client"
 
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
 const data = [
   { name: "Mon", visitors: 400 },
@@ -14,16 +15,24 @@ const data = [
 
 export function VisitorsChart() {
   return (
-    <div className="h-[200px]">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data}>
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="visitors" fill="#8884d8" />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <Card>
+        <CardHeader>
+            <CardTitle>Weekly Visitors</CardTitle>
+            <CardDescription>Distribution of product sales</CardDescription>
+        </CardHeader>
+        <CardContent>
+            <div className="h-[260px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data}>
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="visitors" fill="#8884d8" />
+            </BarChart>
+            </ResponsiveContainer>
+            </div>
+        </CardContent>
+    </Card>
   )
 }
 

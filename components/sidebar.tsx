@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { MainNav } from "@/components/main-nav"
+import { CircleGauge } from "lucide-react"
 
 export function Sidebar() {
   return (
     <div className="lg:w-64 lg:flex-shrink-0">
       <div className="h-full px-3 py-4 overflow-y-auto bg-white border-r lg:block hidden">
-        <div className="flex items-center gap-2 mb-8">
-          <div className="w-6 h-6 rounded-full bg-[#7c3aed]" />
-          <span className="font-semibold">Dashboard</span>
+        <div className="flex items-center gap-2 mb-8 ml-2">
+          <CircleGauge />
+          <span className="font-semibold ">Dashboard</span>
         </div>
 
         <div className="space-y-4">

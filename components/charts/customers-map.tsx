@@ -40,7 +40,7 @@ export function CustomersMap() {
         const data = await fetchCustomerDistribution()
         setCustomerData(data)
         setIsLoading(false)
-      } catch (err) {
+      } catch (error) {
         setError("Failed to load customer data")
         setIsLoading(false)
       }

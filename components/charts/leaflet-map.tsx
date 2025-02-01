@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css"
 interface CustomerData {
   id: string
   name: string
-  coordinates: [number, number] // Ensure this is [latitude, longitude]
+  coordinates: [number, number] 
   color: string
   customers: number
 }
@@ -18,8 +18,8 @@ export default function LeafletMap({ customerData }: LeafletMapProps) {
   const mapRef = useRef<L.Map | null>(null)
 
   useEffect(() => {
-    // Initialize the map only on the client side
-    if ( !mapRef.current) {
+    
+    if (!mapRef.current) {
       mapRef.current = L.map("map").setView([20, 0], 2)
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -27,7 +27,7 @@ export default function LeafletMap({ customerData }: LeafletMapProps) {
       }).addTo(mapRef.current)
     }
 
-    // Cleanup function to remove the map instance
+    
     return () => {
       if (mapRef.current) {
         mapRef.current.remove()
@@ -38,14 +38,14 @@ export default function LeafletMap({ customerData }: LeafletMapProps) {
 
   useEffect(() => {
     if (mapRef.current) {
-      // Clear existing markers before adding new ones
+      
       mapRef.current.eachLayer((layer) => {
         if (layer instanceof L.Marker) {
-         // mapRef.current.removeLayer(layer) // Safe to call since we checked for null
+         // mapRef.current.removeLayer(layer) 
         }
       });
 
-      // Add markers for each customer
+     
       customerData.forEach(({ coordinates, color, name, customers }) => {
         const marker = L.marker(coordinates, {
           icon: L.divIcon({
@@ -54,7 +54,7 @@ export default function LeafletMap({ customerData }: LeafletMapProps) {
           }),
         });
 
-        // Ensure mapRef.current is not null before adding the marker
+       
         if (mapRef.current) {
           marker.addTo(mapRef.current)
             .bindPopup(`<strong>${name}</strong><br />Customers: ${customers}`);

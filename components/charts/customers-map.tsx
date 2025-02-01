@@ -4,19 +4,19 @@ import { useState, useEffect } from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card";
 import dynamic from "next/dynamic";
 
-// Dynamically import the LeafletMap component without server-side rendering
+
 const LeafletMap = dynamic(() => import("./leaflet-map"), { ssr: false });
 
-// Define the structure of customer data
+
 interface CustomerData {
   id: string;
   name: string;
-  coordinates: [number, number]; // Latitude and Longitude
+  coordinates: [number, number]; 
   color: string;
   customers: number;
 }
 
-// Simulate fetching customer distribution data
+
 async function fetchCustomerDistribution(): Promise<CustomerData[]> {
   await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate network delay
   return [
@@ -74,7 +74,7 @@ export function CustomersMap() {
     );
   }
 
-  // Render the map and customer data
+  
   return (
     <Card>
       <CardHeader>

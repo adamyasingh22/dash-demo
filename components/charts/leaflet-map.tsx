@@ -19,7 +19,7 @@ export default function LeafletMap({ customerData }: LeafletMapProps) {
 
   useEffect(() => {
     // Initialize the map only on the client side
-    if (typeof window !== "undefined" && !mapRef.current) {
+    if ( !mapRef.current) {
       mapRef.current = L.map("map").setView([20, 0], 2)
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {

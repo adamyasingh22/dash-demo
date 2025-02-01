@@ -1,73 +1,98 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from "react"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card"
+import dynamic from "next/dynamic"
 
-const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
+// Dynamically import the LeafletMap component without server-side rendering
+const LeafletMap = dynamic(() => import("./leaflet-map"), { ssr: false })
 
-
-interface SetViewOnLoadProps {
-  center: [number, number]; // Tuple for latitude and longitude
-  zoom: number; // Zoom level
+// Define the structure of customer data
+interface CustomerData {
+  id: string
+  name: string
+  coordinates: [number, number] // Latitude and Longitude
+  color: string
+  customers: number
 }
 
-function SetViewOnLoad({ center, zoom }: SetViewOnLoadProps) {
-  const map = useMap();
-  useEffect(() => {
-    map.setView(center, zoom);
-  }, [map, center, zoom]);
-  return null;
+// Simulate fetching customer distribution data
+async function fetchCustomerDistribution(): Promise<CustomerData[]> {
+  await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate network delay
+  return [
+    { id: "1", name: "North America", coordinates: [40, -100], color: "blue", customers: 1000 },
+    { id: "2", name: "Europe", coordinates: [50, 10], color: "green", customers: 800 },
+    { id: "3", name: "Asia", coordinates: [30, 110], color: "red", customers: 1200 },
+    { id: "4", name: "Africa", coordinates: [0, 20], color: "yellow", customers: 500 },
+    { id: "5", name: "South America", coordinates: [-20, -60], color: "purple", customers: 700 },
+    { id: "6", name: "Australia", coordinates: [-25, 135], color: "orange", customers: 300 },
+  ]
 }
 
 export function CustomersMap() {
-  const [geoData, setGeoData] = useState<any>(null); 
+  const [customerData, setCustomerData] = useState<CustomerData[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchGeoData = async () => {
-      const response = await fetch(geoUrl);
-      const data = await response.json();
-      console.log(data); // Log the fetched data to inspect it
-
-      // Check if the data is valid GeoJSON
-      if (data.type === "FeatureCollection" && Array.isArray(data.features)) {
-        setGeoData(data);
-      } else {
-        console.error("Invalid GeoJSON data", data);
+    async function loadCustomerData() {
+      try {
+        const data = await fetchCustomerDistribution()
+        setCustomerData(data)
+        setIsLoading(false)
+      } catch (err) {
+        setError("Failed to load customer data")
+        setIsLoading(false)
       }
-    };
+    }
 
-    fetchGeoData();
-  }, []);
+    loadCustomerData()
+  }, [])
 
-  const geoJsonStyle = {
-    fillColor: '#DDD',
-    color: '#FFF',
-    weight: 1,
-  };
+  // Loading state
+  if (isLoading) {
+    return (
+      <Card>
+        <CardContent className="flex items-center justify-center h-[400px]">
+          <p>Loading customer data...</p>
+        </CardContent>
+      </Card>
+    )
+  }
 
+  // Error state
+  if (error) {
+    return (
+      <Card>
+        <CardContent className="flex items-center justify-center h-[400px]">
+          <p className="text-red-500">{error}</p>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  // Render the map and customer data
   return (
     <Card>
       <CardHeader>
         <CardTitle>Customer Distribution</CardTitle>
-        <CardDescription>Global customer presence</CardDescription>
+        <CardDescription>Global presence of our customer base</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="h-[300px] sm:h-[400px] w-full">
-          {geoData && (
-            <MapContainer
-              style={{ height: '100%', width: '100%' }}
-            >
-              <SetViewOnLoad center={[20, 0]} zoom={2} />
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <GeoJSON data={geoData} pathOptions={geoJsonStyle} />
-            </MapContainer>
-          )}
+        <div className="h-[400px] w-full relative">
+          <LeafletMap customerData={customerData} />
+        </div>
+        <div className="mt-4 flex flex-wrap justify-center gap-4">
+          {customerData.map(({ id, name, color, customers }) => (
+            <div key={id} className="flex items-center">
+              <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: color }} aria-hidden="true" />
+              <span className="text-sm">
+                {name}: {customers} customers
+              </span>
+            </div>
+          ))}
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }

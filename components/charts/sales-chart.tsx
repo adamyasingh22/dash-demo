@@ -20,7 +20,7 @@ export function SalesChart() {
         <CardDescription>Distribution of product sales</CardDescription>
     </CardHeader>    
     <CardContent>
-    <div className="h-[260px] w-full">
+     <div className="h-[260px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <XAxis dataKey="name" />
@@ -29,7 +29,7 @@ export function SalesChart() {
           <Line type="monotone" dataKey="sales" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
-    </div>
+     </div>
     </CardContent>
     </Card>
   )
